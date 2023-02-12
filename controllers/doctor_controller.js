@@ -1,5 +1,5 @@
 const Doctor = require('../models/Doctor');
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 module.exports.register = async function (req, res) {
     // console.log(req.body);
@@ -42,8 +42,8 @@ module.exports.register = async function (req, res) {
 
 module.exports.login = async function(req,res){
     try{
-        let doc = await Doctor.findOne({email:req.body.email});
-        if(!doc || doc.password != req.body.password){
+        let doctor = await Doctor.findOne({email:req.body.email});
+        if(!doctor || doctor.password != req.body.password){
             return res.status(422).json({
                 message:"Invalid username or password",
             });
@@ -51,7 +51,7 @@ module.exports.login = async function(req,res){
         return res.status(200).json({
             message :"loged in sucessfully",
             data:{
-                token:jwt.sign(doc.toJSON(),'secret',{expiresIn:'200000'}),
+                token:jwt.sign(doctor.toJSON(),'secret',{expiresIn:'200000'}),
             }
         })
     }

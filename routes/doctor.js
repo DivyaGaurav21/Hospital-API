@@ -8,7 +8,7 @@ router.post('/register', doctorController.register);
 
 
 // -----------------route for login action--------------------//
-// router.post('/login', doctorController.login);
+router.post('/login', doctorController.login);
 
 
 
