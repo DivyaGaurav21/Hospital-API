@@ -7,7 +7,12 @@ const port = 8000;
 const db = require('./config/mongoose')
 
 
+// ----------passport and passport-jwt---------------//
+const passport = require('passport');
+const passportJWT = require('./config/passport-jwt-Strategy');
 
+
+// -------------for reading form data---------------//
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/', require('./routes/index'));
