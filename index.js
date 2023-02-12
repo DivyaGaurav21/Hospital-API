@@ -7,9 +7,10 @@ const port = 8000;
 const db = require('./config/mongoose')
 
 
-app.get('/', (req, res) => {
-    res.json({"name" : "dg"})
-})
+
+app.use(express.urlencoded({ extended: true }))
+
+app.use('/', require('./routes/index'));
 
 app.listen(port, (err) => {
     if (err) {
