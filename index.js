@@ -15,6 +15,8 @@ const passportJWT = require('./config/passport-jwt-Strategy');
 // -------------for reading form data---------------//
 app.use(express.urlencoded({ extended: true }))
 
+app.use(passport.initialize());
+
 app.use('/', require('./routes/index'));
 
 app.listen(port, (err) => {
