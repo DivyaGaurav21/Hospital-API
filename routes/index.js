@@ -11,6 +11,6 @@ router.use('/doctors', require('./doctor'));
 router.use('/patients', require('./patient'));
 
 //----------to handle all routes od /report url---------------//
-// router.use('/report', require('./report'));
+router.use('/report', require('./report'));
 
 module.exports = router;

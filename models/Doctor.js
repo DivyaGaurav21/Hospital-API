@@ -13,7 +13,7 @@ const docSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        uniqure: true,
+        unique: true,
     },
     password: {
         type: String,
