@@ -2,8 +2,8 @@ const Patient = require('../models/Patient');
 const Doctor = require('../models/Doctor');
 const Report = require('../models/Reports');
 
-//creating new report for patient
 
+//--------------create patient for authorized doctor-----------------//
 module.exports.create = async (req, res) => {
     try {
         let patient = await Patient.findOne({ phone: req.body.phone });
@@ -26,3 +26,46 @@ module.exports.create = async (req, res) => {
         })
     }
 }
+
+
+
+//------------create report for the patient---------------------//
+module.exports.createReport = async (req, res) => {
+    console.log(req.params)
+    try {
+        console.log(req.body.doctor);
+        // check if patient exists
+        let patient = await Patient.findById(req.params.id);
+        // if patient exist 
+        if (patient) {
+            // create data for report
+            let reportData = {
+                doctor: req.body.doctor,
+                patient: req.params.id,
+                status: req.body.status,
+                date: req.body.date,
+            };
+            console.log("hello", Report);
+
+            // create the report and push in patient's reports
+            let report = await Report.create(reportData);
+            patient.reports.push(report);
+
+            patient.save();
+
+            return res.status(200).json({
+                message: "Patient report successfully created",
+            });
+        } else {
+            return res.status(409).json({
+                message: "Patient registration unsuccessful",
+            });
+        }
+    } catch (err) {
+        console.log(`Error in creating report for the patient: ${err}`);
+
+        return res.status(500).json({
+            err
+        });
+    }
+};
