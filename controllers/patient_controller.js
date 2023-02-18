@@ -69,3 +69,30 @@ module.exports.createReport = async (req, res) => {
         });
     }
 };
+
+
+// create all the reports
+module.exports.allReports = async (req, res) => {
+    try {
+        let patient = await Patient.findById(req.params.id).populate({
+            path: "reports",
+            populate: { path: "doctor", select: "name _id" },
+        });
+
+        if (patient) {
+            return res.status(200).json({
+                message: `${patient.name}'s Test Reports`,
+                reports: patient.reports,
+            });
+        } else {
+            return res.status(409).json({
+                message: "Patient not registered",
+            });
+        }
+    } catch (err) {
+        console.log(`Error creating all reports for the patient: ${err}`);
+        return res.status(500).json({
+            message: "Internal Server Error",
+        });
+    }
+};
