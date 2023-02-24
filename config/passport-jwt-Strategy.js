@@ -10,7 +10,7 @@ let opts = {
 }
 
 
-//JWT authentication
+//----------JWT authentication Sradegy----------------//
 passport.use(new JWTStrategy(opts, function (jwtPayLoad, done) {
 
     Doctor.findById(jwtPayLoad._id, function (err, user) {

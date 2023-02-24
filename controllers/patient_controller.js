@@ -71,7 +71,7 @@ module.exports.createReport = async (req, res) => {
 };
 
 
-// create all the reports
+//--------------create all the reports-------------------------------//
 module.exports.allReports = async (req, res) => {
     try {
         let patient = await Patient.findById(req.params.id).populate({

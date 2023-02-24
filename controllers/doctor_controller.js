@@ -1,6 +1,7 @@
 const Doctor = require('../models/Doctor');
 const jwt = require('jsonwebtoken');
 
+// ------------------------doctor register controller action--------------------//
 module.exports.register = async function (req, res) {
     // console.log(req.body);
     try {
@@ -39,7 +40,7 @@ module.exports.register = async function (req, res) {
 }
 
 
-
+// ------------------------doctor login controller action--------------------//
 module.exports.login = async function(req,res){
     try{
         let doctor = await Doctor.findOne({email:req.body.email});

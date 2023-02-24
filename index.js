@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(passport.initialize());
 
+// ----------------index route---------------------//
 app.use('/', require('./routes/index'));
 
 app.listen(port, (err) => {
