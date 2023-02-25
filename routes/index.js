@@ -4,6 +4,10 @@ const router = express.Router();
 
 console.log('router is loaded');
 
+router.get('/', (req, res) => {
+    res.send('all ohk :) check API by PostMan');
+})
+
 //----------to handle all routes of /doctors url----------------//
 router.use('/doctors', require('./doctor'));
 
